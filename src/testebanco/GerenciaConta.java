@@ -6,31 +6,63 @@
 package testebanco;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author loren
  */
 public class GerenciaConta {
-    
+
     ArrayList<Cliente> clientes;
-    
-    public GerenciaConta(){
+
+    public GerenciaConta() {
         this.clientes = new ArrayList<Cliente>();
     }
-    
-    public void criarCliente(String nome, String cpf, String endereco, String telefone){
-        Cliente novo_cliente = new Cliente(endereco, telefone, cpf, nome);
+
+    public void criarCliente() {
+        Scanner read = new Scanner(System.in);
+
+        System.out.println("Digite seu nome:");
+        String nome = read.nextLine();
+        System.out.println("Digite seu cpf:");
+        String cpf = read.nextLine();
+        System.out.println("Digite seu endereço");
+        String endereco = read.nextLine();
+        System.out.println("Digite seu telefone:");
+        String telefone = read.nextLine();
+        System.out.println("Digite 1 para conta Comum ou 2 para conta especial!");
+        int tipoConta = read.nextInt();
         
-        //tentativa de "se der certo ou nao" seguir enfrente 
-        try{
+       //Cria um novo cliente
+        Cliente novo_cliente = new Cliente(endereco, telefone, cpf, nome, tipoConta);
+        //Cria uma conta e atrela ao mesmo cliente
+        this.CriarConta(novo_cliente);
+            
+        try {
             clientes.add(novo_cliente);
-        }catch(Exception e){
+
+        } catch (Exception e) {
+
             System.out.println(e.getMessage());
         }
     }
+
+        public void CriarConta(Cliente cliente){
+            
+            if(cliente.getTipoConta()== 1){
+              Scanner read = new Scanner(System.in);
+              System.out.println("Digite o numero da sua conta:");
+              cliente.setConta( new Conta( read.nextInt() ) );
+            }else{
+                Scanner read = new Scanner(System.in);
+                System.out.println("Digite o numero da sua conta:");
+                cliente.setConta_especial(new ContaEspecial() );
+            }
+        }
+        
     
-    public ArrayList<Cliente> todosClientes(){
+    public ArrayList<Cliente> todosClientes() {
         return clientes;
     }
 }

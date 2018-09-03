@@ -1,72 +1,55 @@
-
 package testebanco;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class TesteBanco {
 
-   
     public static void main(String[] args) {
+
         
-        String nome, cpf, endereco, telefone;
         Scanner read = new Scanner(System.in);
         boolean continuar_programa = true;
-        GerenciaConta gerente = new GerenciaConta();
-        while(continuar_programa){
-            System.out.println("Criar cliente");
-            nome = read.nextLine();
-            cpf = read.nextLine();
-            endereco = read.nextLine();
-            telefone = read.nextLine();
+       
+        System.out.println("MENU DE ENTRADA. BEM VINDO!!!");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("Primeiro, selecione uma das opçoes:");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("1- Cadastrar conta");
+        System.out.println("3- Relatorios");
+        System.out.println("4- Movimentação");
+        System.out.println("5- Sair");
 
-            gerente.criarCliente(nome, cpf, endereco, telefone);
+        GerenciaConta cadastro = new GerenciaConta();
+        
+        while (continuar_programa) {
+            //esta setado manualmente para a opcao de cadastro
+            int opcoes_menu = 1;
+            switch(opcoes_menu){
+                case 1:
+                    System.out.println("Voce selecionou a opção de Cadastro!");
+                    cadastro.criarCliente();
+                    break;
+                case 4:
+                    
+            }
+    
             System.out.println("Deseja continuar");
             continuar_programa = read.nextBoolean();
         }
-        
-        ArrayList<Cliente> todos_clientes = gerente.todosClientes();
-        for(int i = 0; i < todos_clientes.size(); i++){
+
+        //quando o while terminar sera mostrado a lista de clientes
+        ArrayList<Cliente> todos_clientes = cadastro.todosClientes();
+        for (int i = 0; i < todos_clientes.size(); i++) {
             System.out.println("nome do cliente " + todos_clientes.get(i).getNome());
+            if(todos_clientes.get(i).getTipoConta() == 1){
+                System.out.println("conta do cliente " + todos_clientes.get(i).getConta().getNumeroConta());
+                System.out.println("saldo do cliente " + todos_clientes.get(i).getConta().getSaldo());
+            }else{
+                System.out.println("conta do cliente " + todos_clientes.get(i).getConta_especial().getNumeroConta());
+                System.out.println("saldo do cliente " + todos_clientes.get(i).getConta_especial().getSaldo());
+            }    
         }
     }
-//    Scanner read = new Scanner(System.in);
-//    Cliente myBank = new Cliente();
-//    int contaTipo;
-//
-//    int serChoice = 2;
-//    
-//   System.out.println("MENU DE ENTRADA. BEM VINDO!!!");
-//    System.out.println("-----------------------------------------------------------");
-//    System.out.println("Primeiro, selecione uma das opçoes:");
-//    System.out.println("-----------------------------------------------------------");
-//    System.out.println("1- Contas especiais");
-//    System.out.println("2- Contas normais");
-//    
-//    
-//    contaTipo= read.nextInt();
-//    
-//    Conta deposito = new Conta();
-//    deposito.depositar();
-//    
-//    if(contaTipo == 1){
-//        
-//        System.out.println("1) Abrir uma nova conta");
-//        System.out.println("2) Depositos");
-//        System.out.println("3) Saques");
-//        
-//        
-//    } else if(contaTipo == 2){
-//        
-//        System.out.println("1) Abrir uma nova conta");
-//        System.out.println("2) Depositos");
-//        System.out.println("3) Saques");
-//        
-//    } else 
-//        
-//        System.out.println("Opção invalida. Selecione uma opção correta!");
-//    
-//    }
-    
 }
+

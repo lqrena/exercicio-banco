@@ -8,12 +8,41 @@ class Cliente {
     private String telefone;
     private String cpf;
     private String nome;
+    private int tipoConta;
+    private Conta conta;
+    private ContaEspecial conta_especial;
 
-    public Cliente(String endereco, String telefone, String cpf, String nome){
+    public Conta getConta() {
+        return conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
+
+    public ContaEspecial getConta_especial() {
+        return conta_especial;
+    }
+
+    public void setConta_especial(ContaEspecial conta_especial) {
+        this.conta_especial = conta_especial;
+    }
+
+    public int getTipoConta() {
+        return tipoConta;
+    }
+
+    public void setTipoConta(int tipoConta) {
+        this.tipoConta = tipoConta;
+    }
+
+    public Cliente(String endereco, String telefone, String cpf, String nome, int tipoConta){
         this.cpf = cpf;
         this.endereco = endereco;
         this.telefone = telefone;
         this.nome = nome;
+        this.tipoConta = tipoConta;
+        
     }
     
     public String getCpf() {
@@ -46,8 +75,8 @@ class Cliente {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    
     }
     
-
     
 }
