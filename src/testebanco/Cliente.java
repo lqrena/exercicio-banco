@@ -17,12 +17,11 @@ class Cliente {
     }
     
     public String getCpf() {
-        this.criarCliente(nome, cpf, endereco, telefone);
         return cpf;
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        this.cpf = cpf;  
     }
 
     public String getNome() {
